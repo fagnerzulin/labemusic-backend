@@ -16,7 +16,7 @@ export default class BaseDatebase {
     },
   });
 
-  public static closeConnection() {
+  public static closeConnection(): void {
     this.knexConnection.destroy();
   }
 }

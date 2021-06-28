@@ -8,6 +8,7 @@ export interface AppRoute {
 
 export default class App {
   private express: Express = express();
+
   private port: number = Number(process.env.PORT) || 3003;
 
   constructor(private routes: AppRoute[]) {}
@@ -25,12 +26,12 @@ export default class App {
   }
 
   private routers() {
-    this.routes.map(route => {
+    this.routes.forEach(route => {
       this.express.use(route.path, route.handle);
     });
   }
 
-  public listen() {
+  public listen(): void {
     this.express.listen(this.port, () => {
       console.log(`App listening on port ${this.port}`);
     });
