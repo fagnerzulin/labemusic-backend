@@ -5,7 +5,7 @@ export interface AuthenticationData {
 }
 
 export default class TokenService {
-  private key: string = process.env.JWT_KEY;
+  private key: string = process.env.JWT_KEY as string;
 
   public generateToken(paylod: AuthenticationData): string {
     return jwt.sign(paylod, this.key, {
