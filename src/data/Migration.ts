@@ -49,7 +49,10 @@ export default class Migration extends BaseDatebase {
           table.string('id', 255).notNullable().primary();
           table.string('subtitle', 255).notNullable();
           table.string('author', 255).notNullable();
-          table.time('date').notNullable();
+          table
+            .timestamp('date')
+            .notNullable()
+            .defaultTo(BaseDatebase.knexConnection.fn.now());
           table.string('file', 255).notNullable();
           table.string('album', 255).notNullable();
           table.string('user_id', 255).notNullable();
