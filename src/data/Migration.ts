@@ -1,14 +1,6 @@
 import BaseDatebase from './BaseDatabase';
 
 export default class Migration extends BaseDatebase {
-  private readonly userTable: string = 'labemusic_user';
-
-  private readonly musictTable: string = 'labemusic_music';
-
-  private readonly genreTable: string = 'labemusic_genre';
-
-  private readonly musicHasGenreTable: string = 'labemusic_music_has_genre';
-
   public async migrate(): Promise<string> {
     try {
       await this.createUserTable();
