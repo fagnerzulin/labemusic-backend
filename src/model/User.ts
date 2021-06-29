@@ -64,3 +64,5 @@ export interface UserInputDTO {
   nickname: string;
   password: string;
 }
+
+export default User;
