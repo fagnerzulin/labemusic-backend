@@ -10,6 +10,8 @@ export default class BaseDatebase {
 
   protected readonly genreTable: string = 'labemusic_genre';
 
+  protected readonly albumTable: string = 'labemusic_album';
+
   protected readonly musicHasGenreTable: string = 'labemusic_music_has_genre';
 
   protected static knexConnection: Knex = knex({
