@@ -4,6 +4,7 @@ export default class Migration extends BaseDatebase {
   public async migrate(): Promise<string> {
     try {
       await this.createUserTable();
+      await this.createAlbumTable();
       await this.createMusicTable();
       await this.createGenreTable();
       await this.createMusicHasGenreTable();
@@ -48,14 +49,34 @@ export default class Migration extends BaseDatebase {
           table.string('id', 255).notNullable().primary();
           table.string('subtitle', 255).notNullable();
           table.string('author', 255).notNullable();
-          table.date('date').notNullable();
+          table.time('date').notNullable();
           table.string('file', 255).notNullable();
           table.string('album', 255).notNullable();
           table.string('user_id', 255).notNullable();
           table
-            .foreign('user_id')
+            .foreign('author')
             .references(`${this.userTable}.id`)
             .onDelete('CASCADE');
+          table
+            .foreign('album')
+            .references(`${this.albumTable}.id`)
+            .onDelete('CASCADE');
+        }
+      );
+    }
+  }
+
+  private async createAlbumTable() {
+    const exist = await BaseDatebase.knexConnection.schema.hasTable(
+      this.albumTable
+    );
+
+    if (!exist) {
+      await BaseDatebase.knexConnection.schema.createTable(
+        this.albumTable,
+        table => {
+          table.string('id', 255).notNullable().primary();
+          table.string('album', 255).notNullable().unique('album');
         }
       );
     }
