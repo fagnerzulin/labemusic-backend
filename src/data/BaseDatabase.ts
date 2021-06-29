@@ -4,6 +4,14 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export default class BaseDatebase {
+  protected readonly userTable: string = 'labemusic_user';
+
+  protected readonly musictTable: string = 'labemusic_music';
+
+  protected readonly genreTable: string = 'labemusic_genre';
+
+  protected readonly musicHasGenreTable: string = 'labemusic_music_has_genre';
+
   protected static knexConnection: Knex = knex({
     client: 'mysql',
     connection: {
