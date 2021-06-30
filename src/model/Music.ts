@@ -3,10 +3,10 @@ export class Musica {
     private id: string,
     private title: string,
     private author: string,
-    private date: number = Date.now(),
     private file: string,
     private genre: string[],
-    private album: string
+    private album: string,
+    private date: number = Date.now()
   ) {}
 
   public get getAlbum(): string {
@@ -54,18 +54,25 @@ export class Musica {
 
   public musicToDB(): MusicToDB {
     return {
-      album: this.getAlbum,
-      title: this.getTitle,
-      author: this.getAuthor,
-      date: this.getDate,
-      file: this.getFile,
-      genre: this.getGenre,
-      id: this.getId,
+      data: {
+        album: this.getAlbum,
+        title: this.getTitle,
+        author: this.getAuthor,
+        date: this.getDate,
+        file: this.getFile,
+        id: this.getId,
+      },
+      genres: this.getGenre,
     };
   }
 }
 
-export interface MusicToDB extends MusicInputDTO {
+export interface MusicToDB {
+  data: Omit<MusicData, 'genre'>;
+  genres: string[];
+}
+
+interface MusicData extends MusicInputDTO {
   id: string;
 }
 
