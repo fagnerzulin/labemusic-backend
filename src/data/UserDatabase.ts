@@ -1,8 +1,35 @@
 import BaseDatabase from './BaseDatabase';
-import { UserToDB } from '../model/User';
+import User, { UserToDB } from '../model/User';
+import CustomError from '../error/CustomError';
 
 export class UserDatabase extends BaseDatabase {
   public async insertUser(user: UserToDB): Promise<void> {
-    await BaseDatabase.knexConnection(this.userTable).insert(user);
+    try {
+      await BaseDatabase.knexConnection(this.userTable).insert(user);
+
+      await BaseDatabase.closeConnection();
+    } catch (error) {
+      throw new CustomError(error.message || error.sqlMessage, 500);
+    }
+  }
+
+  public async selectByEmail(email: string): Promise<User | undefined> {
+    try {
+      const [result] = await BaseDatabase.knexConnection(this.userTable)
+        .select()
+        .where({ email });
+
+      if (!result) return undefined;
+
+      return new User(
+        result.name,
+        result.email,
+        result.nickname,
+        result.password,
+        result.id
+      );
+    } catch (error) {
+      throw new CustomError(error.message || error.sqlMessage, 500);
+    }
   }
 }
