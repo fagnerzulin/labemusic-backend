@@ -2,7 +2,12 @@ import BaseDatebase from './BaseDatabase';
 import Genre, { GenreToDB } from '../model/Genre';
 import CustomError from '../error/CustomError';
 
-export class GenreDatabase extends BaseDatebase {
+export interface IGenreDatabase {
+  insertGenre(genre: GenreToDB): Promise<void>;
+  selectAll(): Promise<Genre[]>;
+}
+
+export class GenreDatabase extends BaseDatebase implements IGenreDatabase {
   public async insertGenre(genre: GenreToDB): Promise<void> {
     try {
       await BaseDatebase.knexConnection(this.genreTable).insert(genre);

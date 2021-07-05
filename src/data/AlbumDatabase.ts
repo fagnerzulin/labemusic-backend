@@ -2,7 +2,12 @@ import BaseDatebase from './BaseDatabase';
 import { Album, AlbumToDB } from '../model/Album';
 import CustomError from '../error/CustomError';
 
-export class AlbumDatabase extends BaseDatebase {
+export interface IAlbumDatabase {
+  insertAlbum(album: AlbumToDB): Promise<void>;
+  selectAll(): Promise<Album[]>;
+}
+
+export class AlbumDatabase extends BaseDatebase implements IAlbumDatabase {
   public async insertAlbum(album: AlbumToDB): Promise<void> {
     try {
       await BaseDatebase.knexConnection(this.albumTable).insert(album);
