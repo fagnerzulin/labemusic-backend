@@ -1,4 +1,4 @@
-import { UserInputDTO } from '../../model/User';
+import { UserInputDTO, UserLoginDTO } from '../../model/User';
 import CustomError from '../../error/CustomError';
 
 export default class UserValidations {
@@ -9,6 +9,12 @@ export default class UserValidations {
     password,
   }: UserInputDTO): void {
     if (!email || !name || !nickname || !password) {
+      throw new CustomError('Some field is missing', 422);
+    }
+  }
+
+  protected hasLoginFields({ email, password }: UserLoginDTO): void {
+    if (!email || !password) {
       throw new CustomError('Some field is missing', 422);
     }
   }
