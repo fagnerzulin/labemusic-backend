@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import App from './App';
-import userHandle from './routes/UserRoutes';
+import userHandle from './routes/userRoutes';
 
 dotenv.config();
 
