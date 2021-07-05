@@ -7,10 +7,9 @@ export interface AuthenticationData {
 export interface ITokenService {
   generateToken(paylod: AuthenticationData): string;
   getTokenData(token: string | undefined): AuthenticationData;
-  validateToken(token: string | undefined): string;
 }
 
-export default class TokenService {
+export default class TokenService implements ITokenService {
   private key: string = process.env.JWT_KEY as string;
 
   public generateToken(paylod: AuthenticationData): string {

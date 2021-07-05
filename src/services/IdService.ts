@@ -4,7 +4,7 @@ export interface IIdService {
   idGenerate(): string;
 }
 
-export default class IdService {
+export default class IdService implements IIdService {
   public idGenerate(): string {
     return v4();
   }
