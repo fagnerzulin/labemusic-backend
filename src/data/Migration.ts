@@ -24,9 +24,10 @@ export default class Migration extends BaseDatebase {
       await BaseDatebase.knexConnection.schema.createTable(
         this.userTable,
         table => {
-          table.string('nickname', 16).notNullable().unique('nickname');
+          table.string('nickname', 255).notNullable().unique('nickname');
           table.string('email', 255).notNullable().unique('email');
           table.string('password', 255).notNullable();
+          table.string('name', 255).notNullable();
           table
             .timestamp('create_at')
             .notNullable()
