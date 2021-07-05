@@ -4,6 +4,12 @@ export interface AuthenticationData {
   id: string;
 }
 
+export interface ITokenService {
+  generateToken(paylod: AuthenticationData): string;
+  getTokenData(token: string | undefined): AuthenticationData;
+  validateToken(token: string | undefined): string;
+}
+
 export default class TokenService {
   private key: string = process.env.JWT_KEY as string;
 
@@ -13,9 +19,9 @@ export default class TokenService {
     });
   }
 
-  public getTokenData(token: string | undefined): string | jwt.JwtPayload {
+  public getTokenData(token: string | undefined): AuthenticationData {
     const validatedToken = this.validateToken(token);
-    return jwt.verify(validatedToken, this.key);
+    return jwt.verify(validatedToken, this.key) as AuthenticationData;
   }
 
   private validateToken(token: string | undefined): string {
