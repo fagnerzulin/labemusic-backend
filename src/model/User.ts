@@ -58,10 +58,13 @@ export interface UserToDB extends UserInputDTO {
   id: string;
 }
 
-export interface UserInputDTO {
+export interface UserInputDTO extends UserLoginDTO {
   name: string;
-  email: string;
   nickname: string;
+}
+
+export interface UserLoginDTO {
+  email: string;
   password: string;
 }
 

@@ -6,6 +6,7 @@ const userRoutes: Router = Router();
 const userController: UserController = new UserController();
 
 userRoutes.post('/signup', userController.signup);
+userRoutes.post('/login', userController.login);
 
 const userHandle: AppRoute = {
   path: '/user',
