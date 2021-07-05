@@ -2,7 +2,12 @@ import BaseDatabase from './BaseDatabase';
 import User, { UserToDB } from '../model/User';
 import CustomError from '../error/CustomError';
 
-export class UserDatabase extends BaseDatabase {
+export interface IUserDatabase {
+  insertUser(user: UserToDB): Promise<void>;
+  selectByEmail(email: string): Promise<User | undefined>;
+}
+
+export class UserDatabase extends BaseDatabase implements IUserDatabase {
   public async insertUser(user: UserToDB): Promise<void> {
     try {
       await BaseDatabase.knexConnection(this.userTable).insert(user);

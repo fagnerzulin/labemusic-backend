@@ -2,7 +2,11 @@ import BaseDatebase from './BaseDatabase';
 import { MusicToDB } from '../model/Music';
 import CustomError from '../error/CustomError';
 
-export class MusicDatabase extends BaseDatebase {
+export interface IMusicDatabase {
+  insertMusic(music: MusicToDB): Promise<void>;
+}
+
+export class MusicDatabase extends BaseDatebase implements IMusicDatabase {
   public async insertMusic(music: MusicToDB): Promise<void> {
     try {
       await BaseDatebase.knexConnection(this.musictTable).insert(music.data);
