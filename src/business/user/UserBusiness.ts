@@ -1,5 +1,5 @@
 import { IUserDatabase, UserDatabase } from '../../data/UserDatabase';
-import User, { UserInputDTO } from '../../model/User';
+import User, { UserInputDTO, UserLoginDTO } from '../../model/User';
 import HashService, { IHashService } from '../../services/HashService';
 import IdService, { IIdService } from '../../services/IdService';
 import TokenService, { ITokenService } from '../../services/TokenService';
@@ -32,6 +32,8 @@ export class UserBusiness extends UserValidations {
 
     return this.tokenService.generateToken({ id });
   }
+
+  public async login(data: UserLoginDTO): Promise<string> {}
 }
 
 export default new UserBusiness(
