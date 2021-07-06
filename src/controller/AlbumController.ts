@@ -15,5 +15,15 @@ export default class AlbumController {
     }
   }
 
-  public async getAll() {}
+  public async getAll(req: Request, res: Response): Promise<void> {
+    try {
+      const token = req.headers.authorization;
+
+      const albums = await albumBusiness.getAll(token);
+
+      res.send({ albums });
+    } catch (error) {
+      res.status(error.statusCode || 400).send({ message: error.message });
+    }
+  }
 }

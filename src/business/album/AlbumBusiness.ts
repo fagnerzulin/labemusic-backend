@@ -21,6 +21,8 @@ export class AlbumBusiness {
 
     return album;
   }
+
+  public async getAll(token: string | undefined): Promise<Album[]> {}
 }
 
 export default new AlbumBusiness(
