@@ -1,4 +1,5 @@
 import * as jwt from 'jsonwebtoken';
+import CustomError from '../error/CustomError';
 
 export interface AuthenticationData {
   id: string;
@@ -24,7 +25,7 @@ export default class TokenService implements ITokenService {
   }
 
   private validateToken(token: string | undefined): string {
-    if (!token) throw new Error('The token must be informed');
+    if (!token) throw new CustomError('The token must be informed', 401);
 
     return token;
   }
