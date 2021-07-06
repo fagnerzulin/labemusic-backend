@@ -9,7 +9,7 @@ genreRoutes.post('/create', genreController.create);
 // genreRoutes.get('/all', genreController.getAll);
 
 const genreHandle: AppRoute = {
-  path: '/album',
+  path: '/genre',
   handle: genreRoutes,
 };
 
