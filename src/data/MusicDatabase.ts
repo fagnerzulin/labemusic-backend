@@ -19,8 +19,6 @@ export class MusicDatabase extends BaseDatebase implements IMusicDatabase {
           });
         })
       );
-
-      BaseDatebase.closeConnection();
     } catch (error) {
       throw new CustomError(error.message || error.sqlMessage, 500);
     }

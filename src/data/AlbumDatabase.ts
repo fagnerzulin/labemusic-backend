@@ -11,8 +11,6 @@ export class AlbumDatabase extends BaseDatebase implements IAlbumDatabase {
   public async insertAlbum(album: AlbumToDB): Promise<void> {
     try {
       await BaseDatebase.knexConnection(this.albumTable).insert(album);
-
-      await BaseDatebase.closeConnection();
     } catch (error) {
       throw new CustomError(error.message || error.sqlMessage, 500);
     }
@@ -21,8 +19,6 @@ export class AlbumDatabase extends BaseDatebase implements IAlbumDatabase {
   public async selectAll(): Promise<Album[]> {
     try {
       const result = await BaseDatebase.knexConnection(this.albumTable);
-
-      await BaseDatebase.closeConnection();
 
       return result.map(item => new Album(item.id, item.album));
     } catch (error) {
