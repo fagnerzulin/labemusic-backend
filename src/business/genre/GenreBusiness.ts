@@ -21,6 +21,14 @@ export class GenreBusiness {
 
     return genre;
   }
+
+  public async getAll(token: string | undefined): Promise<Genre[]> {
+    this.tokenService.getTokenData(token);
+
+    const genres = await this.genreDatabase.selectAll();
+
+    return genres;
+  }
 }
 
 export default new GenreBusiness(
