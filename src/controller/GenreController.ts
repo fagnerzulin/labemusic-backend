@@ -14,4 +14,16 @@ export default class GenreController {
       res.status(error.statusCode || 400).send({ message: error.message });
     }
   }
+
+  public async getAll(req: Request, res: Response): Promise<void> {
+    try {
+      const token: string | undefined = req.headers.authorization;
+
+      const genres = await genreBusiness.getAll(token);
+
+      res.send({ genres });
+    } catch (error) {
+      res.status(error.statusCode || 400).send({ message: error.message });
+    }
+  }
 }
