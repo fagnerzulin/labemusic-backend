@@ -21,6 +21,14 @@ export class AlbumBusiness {
 
     return album;
   }
+
+  public async getAll(token: string | undefined): Promise<Album[]> {
+    this.tokenService.getTokenData(token);
+
+    const albums = await this.albumDatabase.selectAll();
+
+    return albums;
+  }
 }
 
 export default new AlbumBusiness(
