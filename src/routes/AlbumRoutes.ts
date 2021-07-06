@@ -6,6 +6,7 @@ const albumRoutes: Router = Router();
 const albumController: AlbumController = new AlbumController();
 
 albumRoutes.post('/create', albumController.create);
+albumRoutes.get('/all', albumController.getAll);
 
 const albumHandle: AppRoute = {
   path: '/album',

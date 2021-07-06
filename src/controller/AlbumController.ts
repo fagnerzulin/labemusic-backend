@@ -14,4 +14,6 @@ export default class AlbumController {
       res.status(error.statusCode || 400).send({ message: error.message });
     }
   }
+
+  public async getAll() {}
 }
