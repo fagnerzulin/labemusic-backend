@@ -6,8 +6,6 @@ export class UserDatabase extends BaseDatabase {
   public async insertUser(user: UserToDB): Promise<void> {
     try {
       await BaseDatabase.knexConnection(this.userTable).insert(user);
-
-      await BaseDatabase.closeConnection();
     } catch (error) {
       throw new CustomError(error.message || error.sqlMessage, 500);
     }

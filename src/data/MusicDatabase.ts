@@ -15,8 +15,6 @@ export class MusicDatabase extends BaseDatebase {
           });
         })
       );
-
-      BaseDatebase.closeConnection();
     } catch (error) {
       throw new CustomError(error.message || error.sqlMessage, 500);
     }
