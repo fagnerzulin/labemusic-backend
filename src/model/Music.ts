@@ -1,12 +1,12 @@
-export class Musica {
+export class Music {
   constructor(
     private id: string,
-    private title: string,
+    private subtitle: string,
     private author: string,
     private file: string,
     private genre: string[],
     private album: string,
-    private date: number = Date.now()
+    private date?: string
   ) {}
 
   public get getAlbum(): string {
@@ -21,10 +21,10 @@ export class Musica {
   public set getGenre(value: string[]) {
     this.genre = value;
   }
-  public get getDate(): number {
+  public get getDate(): string | undefined {
     return this.date;
   }
-  public set setDate(value: number) {
+  public set setDate(value: string) {
     this.date = value;
   }
   public get getFile(): string {
@@ -39,11 +39,11 @@ export class Musica {
   public set setAuthor(value: string) {
     this.author = value;
   }
-  public get getTitle(): string {
-    return this.title;
+  public get getSubtitle(): string {
+    return this.subtitle;
   }
-  public set setTitle(value: string) {
-    this.title = value;
+  public set setSubtitle(value: string) {
+    this.subtitle = value;
   }
   public get getId(): string {
     return this.id;
@@ -56,7 +56,7 @@ export class Musica {
     return {
       data: {
         album: this.getAlbum,
-        title: this.getTitle,
+        subtitle: this.getSubtitle,
         author: this.getAuthor,
         date: this.getDate,
         file: this.getFile,
@@ -74,12 +74,12 @@ export interface MusicToDB {
 
 interface MusicData extends MusicInputDTO {
   id: string;
+  author: string;
 }
 
 export interface MusicInputDTO {
-  title: string;
-  author: string;
-  date: number;
+  subtitle: string;
+  date?: string;
   file: string;
   genre: string[];
   album: string;
