@@ -42,7 +42,8 @@ export class MusicDatabase extends BaseDatebase implements IMusicDatabase {
         .join(`${this.userTable} as ut`, 'ut.id', 'mt.author')
         .join(`${this.albumTable} as at`, 'at.id', 'mt.album')
         .join(`${this.musicHasGenreTable} as mgt`, 'mgt.music_id', 'mt.id')
-        .join(`${this.genreTable} as gt`, 'gt.id', 'mgt.genre_id');
+        .join(`${this.genreTable} as gt`, 'gt.id', 'mgt.genre_id')
+        .where('mt.author', author);
 
       const data = this.tranformData(result);
 
