@@ -40,12 +40,12 @@ export default class Migration extends BaseDatebase {
 
   private async createMusicTable() {
     const exist = await BaseDatebase.knexConnection.schema.hasTable(
-      this.musictTable
+      this.musicTable
     );
 
     if (!exist) {
       await BaseDatebase.knexConnection.schema.createTable(
-        this.musictTable,
+        this.musicTable,
         table => {
           table.string('id', 255).notNullable().primary();
           table.string('subtitle', 255).notNullable();
@@ -115,7 +115,7 @@ export default class Migration extends BaseDatebase {
           table.primary(['music_id', 'genre_id']);
           table
             .foreign('music_id')
-            .references(`${this.musictTable}.id`)
+            .references(`${this.musicTable}.id`)
             .onDelete('CASCADE');
 
           table
