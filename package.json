@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "migration": "tsc && node ./build/data/Migration.js",
-    "start": "npm run build && node --inspect ./build/src/index.js",
+    "start": "tsc && node ./build/src/index.js",
     "dev": "clear && ts-node-dev ./src/index.ts",
-    "build": "clear && echo \"Transpiling files...\" && tsc && echo \"Done!\" ",
+    "build": "tsc",
     "test": "jest",
     "dev-start": "CHOKIDAR_USEPOLLING=true tsnd --transpile-only --ignore-watch node_modules ./src/index.ts"
   },
