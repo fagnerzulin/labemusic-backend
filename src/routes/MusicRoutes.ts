@@ -7,6 +7,7 @@ const musicController: MusicController = new MusicController();
 
 musicRoutes.post('/create', musicController.create);
 musicRoutes.get('/all', musicController.getAll);
+musicRoutes.get('/:id', musicController.getById);
 
 const musicHandle: AppRoute = {
   path: '/music',

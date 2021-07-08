@@ -47,6 +47,14 @@ export class MusicBusiness extends MusicValidations {
 
     return musics;
   }
+
+  public async getById(id: string, token: string | undefined): Promise<Music> {
+    this.tokenService.getTokenData(token);
+
+    const music = await this.musicDatabase.selectById(id);
+
+    return music;
+  }
 }
 
 export default new MusicBusiness(
