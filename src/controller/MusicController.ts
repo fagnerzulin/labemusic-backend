@@ -26,4 +26,17 @@ export default class MusicController {
       res.status(error.statusCode || 400).send({ message: error.message });
     }
   }
+
+  public async getById(req: Request, res: Response): Promise<void> {
+    try {
+      const id: string = req.params.id;
+      const token: string | undefined = req.headers.authorization;
+
+      const music = await musicBusiness.getById(id, token);
+
+      res.status(200).send({ music });
+    } catch (error) {
+      res.status(error.statusCode || 400).send({ message: error.message });
+    }
+  }
 }
