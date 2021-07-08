@@ -6,7 +6,7 @@ dotenv.config();
 export default class BaseDatebase {
   protected readonly userTable: string = 'labemusic_user';
 
-  protected readonly musictTable: string = 'labemusic_music';
+  protected readonly musicTable: string = 'labemusic_music';
 
   protected readonly genreTable: string = 'labemusic_genre';
 
