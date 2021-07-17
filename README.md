@@ -18,6 +18,8 @@ O LabeMusic é o projeto full stack do Curso de Desenvolvimento Web Full Stack d
 
 Link para a API: [https://labemusic-backend.herokuapp.com/](https://labemusic-backend.herokuapp.com/)
 
+Link para o repo do [frontend](https://github.com/fagnerzulin/labemusic-frontend)
+
 ## 🎮 Tecnologias utilizadas
 
 ---
